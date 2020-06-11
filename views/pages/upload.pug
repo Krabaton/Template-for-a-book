@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center.mb-3
+      h1 Upload your picture
+    .row.justify-content-center
+      form(action="/pictures/upload" method="post" enctype="multipart/form-data").col-sm-6
+        if(message)
+          .alert.alert-info #{message}
+        .form-group
+          input(type="text" placeholder="Description" name="description").form-control
+        .form-group
+          .custom-file
+            input(type="file" name="photo" id="customFile").custom-file-input
+            label(for="customFile").custom-file-label Choose file
+        .form-group
+          button(type="submit").btn.btn-primary.col-sm-12 Upload

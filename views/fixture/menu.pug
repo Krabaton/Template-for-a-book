@@ -1,0 +1,20 @@
+nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+  .navbar-brand UPLOAD PICTURES SERVICE
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarsExampleDefault.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        a(href="/").nav-link Home
+      if (auth)
+        li.nav-item
+          a(href="/pictures").nav-link Pictures
+        li.nav-item
+          a(href="/pictures/upload").nav-link Upload
+        li.nav-item
+          a(href="/users/logout").nav-link Sign out
+      if (!auth)
+        li.nav-item
+          a(href="/users/registration").nav-link Registration
+        li.nav-item
+          a(href="/users/login").nav-link Sign in

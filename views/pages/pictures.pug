@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  .container
+    .row.mb-3
+      h1 Your pictures
+    if (!auth)
+      .row
+        p Пожалуйста зайдите в сервис, чтобы увидеть свои pictures
+    else
+      .row
+        if(pictures && pictures.length > 0)
+          each pic in pictures
+            .col-md-4
+              .card.mb-4.shadow-sm
+                img.bd-placeholder-img.card-img-top(src=`${pic.path}` width="100%" height=225 alt="150" srcset="" style="object-fit: contain")
+                .card-body
+                  p.card-text= pic.description
+                  .d-flex.justify-content-between.align-items-center
+                    .btn-group
+                      a.btn.btn-sm.btn-outline-secondary(href=`/pictures/edit/${pic._id}`) Редактировать
+                      form(action=`/pictures/del/${pic._id}`, method="post")
+                        button.btn.btn-sm.btn-outline-secondary Удалить
+                    small.text-muted #{pic.size}
+        else
+          p Вы пока не загрузили ни одного изображения

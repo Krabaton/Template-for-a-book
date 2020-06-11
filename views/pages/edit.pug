@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center.mb-3
+      h1 Edit description your picture
+    .row.justify-content-center.mb-3
+      img(src=`${pictureUrl}` width=225 height=225 alt="150"  style="object-fit: contain")
+    .row.justify-content-center
+      form(action=`/pictures/edit/${id}` method="post").col-sm-6
+        .form-group
+          input(type="text" placeholder="Description" name="description").form-control.col-sm-12
+        .form-group
+          button(type="submit").btn.btn-primary.col-sm-12 Update

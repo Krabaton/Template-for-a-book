@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center.mb-3
+      h1 Registration
+    .row.justify-content-center
+      form(action="/users/registration", method="post").col-sm-6
+        if(message)
+          .alert.alert-info #{message}
+        .form-group
+          input(type="text" placeholder="email" name="email").form-control.col-sm-12
+        .form-group
+          input(type="password" placeholder="password" name="password").col-sm-12.form-control
+        .form-group
+          input(type="text" placeholder="nickname" name="nick").col-sm-12.form-control
+        .form-group
+          button(type="submit").btn.btn-primary.col-sm-12 Registration

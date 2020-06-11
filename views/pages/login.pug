@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .container
+    .row.justify-content-center.mb-3
+      h1 Sign in
+    .row.justify-content-center
+      form(action="/users/login", method="post").col-sm-6
+        if(message && message.length > 0)
+          .alert.alert-info #{message}
+        input(type="hidden" name="_csrf" value=`${csrfToken}`)
+        .form-group
+          input(type="text" placeholder="email" name="email").form-control.col-sm-12
+        .form-group
+          input(type="password" placeholder="password" name="password").col-sm-12.form-control
+        .checkbox.text-center.mb-3
+          label
+            input(type="checkbox" name="remember")
+            | Remember me
+        .form-group
+          button(type="submit").btn.btn-primary.col-sm-12 Login
