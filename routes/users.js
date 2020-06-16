@@ -10,10 +10,9 @@ const csrfProtection = csrf({ cookie: true })
 const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   max: 2,
-  handler: function (_, res) {
+  handler: function(_, res) {
     res.render('info', {
-      message:
-        'Too many accounts created from this IP, please try again after an hour',
+      message: 'Too many accounts created from this IP, please try again after an hour',
       auth: false,
     })
   },
@@ -60,7 +59,7 @@ router.post('/login', csrfProtection, (req, res, next) => {
     if (!user) {
       return res.redirect('/')
     }
-    req.logIn(user, async (err) => {
+    req.logIn(user, async err => {
       if (err) {
         return next(err)
       }

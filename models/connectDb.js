@@ -1,18 +1,15 @@
 const mongoose = require('mongoose')
 
-require('dotenv').config();
-let uri = process.env.uriDB;
+require('dotenv').config()
+let uri = process.env.uriDB
 
 mongoose.Promise = global.Promise
-mongoose.connect(
-  uri,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  },
-)
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+})
 
 mongoose.connection.on('connected', () => {
   console.log('Connection!')

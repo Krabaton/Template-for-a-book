@@ -27,10 +27,7 @@ const setTokenForUser = (user, token) => {
 }
 
 const updateSizeStorageForUser = (id, size) => {
-  return User.findByIdAndUpdate(
-    { _id: id },
-    { $set: { storageSize: size } },
-  )
+  return User.findByIdAndUpdate({ _id: id }, { $set: { storageSize: size } })
 }
 
 const savePicture = (options) => {
@@ -54,10 +51,7 @@ const findPictureById = (id) => {
 }
 
 const updateDescriptionOfPicture = (id, description) => {
-  return Picture.findByIdAndUpdate(
-    { _id: id },
-    { $set: { description } },
-  )
+  return Picture.findByIdAndUpdate({ _id: id }, { $set: { description } })
 }
 
 const deletePicture = (id) => {

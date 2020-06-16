@@ -8,8 +8,10 @@ router.get('*', async (req, _, next) => {
     const user = await serviceDb.findUserByToken(req.cookies.token)
     if (user) {
       req.logIn(user, (err) => {
-        if (err)  { return next(err) }
-        next() 
+        if (err) {
+          return next(err)
+        }
+        next()
       })
     } else {
       next()

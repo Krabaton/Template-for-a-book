@@ -38,10 +38,7 @@ router.get('/edit/:id', isAuth, async (req, res, next) => {
 
 router.post('/edit/:id', isAuth, async (req, res, next) => {
   try {
-    await serviceDb.updateDescriptionOfPicture(
-      req.params.id,
-      req.body.description,
-    )
+    await serviceDb.updateDescriptionOfPicture(req.params.id, req.body.description)
     res.redirect('/pictures')
   } catch (err) {
     next(err)
@@ -53,10 +50,7 @@ router.post('/del/:id', isAuth, async (req, res, next) => {
     const picture = await serviceDb.findPictureById(req.params.id)
     const user = await serviceDb.findUserById(req.user._id)
     await serviceDb.deletePicture(picture._id)
-    await serviceDb.updateSizeStorageForUser(
-      user._id,
-      user.storageSize - picture.size,
-    )
+    await serviceDb.updateSizeStorageForUser(user._id, user.storageSize - picture.size)
     await fs.unlink(path.join(process.cwd(), 'public', picture.path))
     res.redirect('/pictures')
   } catch (err) {
@@ -92,10 +86,7 @@ router.post('/upload', isAuth, async (req, res, next) => {
 
   if (newStorageSize > user.storageLimit) {
     await fs.unlink(temporaryName)
-    req.flash(
-      'message',
-      'Storage limit reached. Remove extra pictures to upload',
-    )
+    req.flash('message', 'Storage limit reached. Remove extra pictures to upload')
     return res.redirect('/pictures/upload')
   }
 
